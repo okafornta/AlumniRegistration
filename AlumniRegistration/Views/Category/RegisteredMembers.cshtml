@@ -35,14 +35,14 @@
             <th>
                 Gender
             </th>
+     
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach(var obj in Model)
         {
-            @if (User.IsInRole("Admin") || obj.FullName == User.Identity.Name)
-            {
+            
                 <tr>
                     <td>
                         @obj.FullName
@@ -59,6 +59,8 @@
                     <td>
                         @obj.Gender
                     </td>
+                @if (User.IsInRole("Admin") || obj.FullName == User.Identity.Name)
+                {
                     <td>
                         <div class="w-75 btn-group" role="group">
                             <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id"
@@ -67,8 +69,9 @@
                                class="btn btn-danger mx-2"><i class="bi bi-trash-fill"></i>Delete </a>
                         </div>
                     </td>
+                }
                 </tr>
-            }
+            
             
         }
     </tbody>
